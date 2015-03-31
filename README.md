@@ -18,11 +18,9 @@ For the purposes of this basic, basic e-commerce domain you'll be assuming that 
 
 Fork and clone this repository, and get your tests to pass.
 
-You have rake tasks available to you: `rake db:migrate` and `rake db:reset`. Don't forget to migrate your database!
+Don't forget to migrate your database. To migrate for your tests, run `rake db:migrate ACTIVE_RECORD_ENV=test`. Run `rake console` if you want to look at your databse.
 
-The rspec tests are complete and should not need to change. You'll be building migrations and filling in classes to get the tests to pass as described.
-
-Look at the specs to guide you. You'll be adding columns to the pre-existing tables and associations to their models.
+You'll be building migrations and filling in models to get the tests to pass as described. Look at the specs to guide you. You'll be adding columns to the pre-existing tables and you'll be associations to the models.
 
 ## Resources
 

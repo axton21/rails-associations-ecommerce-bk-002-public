@@ -1,7 +1,6 @@
 describe "User" do
 
   before(:each) do
-    binding.pry
     @user = User.create(:name => "Aaron Bodkin")
     @seller = User.create(:name => "Patricia Morris")
     @store = Store.create(:owner_id => @seller.id, :name => "Lovin' Knit", :description => "a locally sourced organic knit shot")
