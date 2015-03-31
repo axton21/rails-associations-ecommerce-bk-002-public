@@ -23,10 +23,10 @@ describe "User" do
     user_store = Store.create(:owner_id => @user.id, :name => "Jewelry Outlet", :description => "We're known for our unique collection of costume jewelry!")
     necklace = Product.create(:store_id => user_store.id, :name => "necklace", :description => "3D printed tetrahedron necklace")
     bracelet = Product.create(:store_id => user_store.id, :name => "bracelet", :description => "wrought iron bracelet")
-    expect(@user.products).to include(necklace)
-    expect(@user.products).to include(bracelet)
-    expect(@user.products).to_not include(@scarf)
-    expect(@user.products).to_not include(@hat)
+    expect(@user.products_for_sale).to include(necklace)
+    expect(@user.products_for_sale).to include(bracelet)
+    expect(@user.products_for_sale).to_not include(@scarf)
+    expect(@user.products_for_sale).to_not include(@hat)
   end
 
   it "knows about its carts" do
@@ -36,7 +36,7 @@ describe "User" do
     expect(@user.carts).to include(second_cart)
   end
 
-  it "knows about its line items that its purchasing" do
+  it "knows about its potential purchases" do
     aarons_store = Store.create(:owner_id => @user.id, :name => "Jewelry Outlet", :description => "We're known for our unique collection of costume jewelry!")
     necklace = Product.create(:store_id => aarons_store.id, :name => "necklace", :description => "3D printed tetrahedron necklace")
     patricias_cart = Cart.create(:buyer_id => @seller.id)
@@ -46,16 +46,16 @@ describe "User" do
     scarf_line_item = LineItem.create(:cart_id => cart.id, :product_id => @scarf.id)
     hat_line_item = LineItem.create(:cart_id => cart.id, :product_id => @hat.id)
 
-    expect(@user.line_items).to_not include(necklace_line_item)
-    expect(@user.line_items).to include(scarf_line_item)
-    expect(@user.line_items).to include(hat_line_item)
+    expect(@user.potential_purchases).to_not include(necklace_line_item)
+    expect(@user.potential_purchases).to include(scarf_line_item)
+    expect(@user.potential_purchases).to include(hat_line_item)
 
-    expect(@seller.line_items).to include(necklace_line_item)
-    expect(@seller.line_items).to_not include(scarf_line_item)
-    expect(@seller.line_items).to_not include(hat_line_item)    
+    expect(@seller.potential_purchases).to include(necklace_line_item)
+    expect(@seller.potential_purchases).to_not include(scarf_line_item)
+    expect(@seller.potential_purchases).to_not include(hat_line_item)    
   end
 
-  it "knows about the products that it has sold" do
+  it "knows about its potential sales" do
     aarons_store = Store.create(:owner_id => @user.id, :name => "Jewelry Outlet", :description => "We're known for our unique collection of costume jewelry!")
     necklace = Product.create(:store_id => aarons_store.id, :name => "necklace", :description => "3D printed tetrahedron necklace")
     patricias_cart = Cart.create(:buyer_id => @seller.id)
@@ -65,31 +65,13 @@ describe "User" do
     scarf_line_item = LineItem.create(:cart_id => cart.id, :product_id => @scarf.id)
     hat_line_item = LineItem.create(:cart_id => cart.id, :product_id => @hat.id)
 
-    expect(@user.sold_products).to include(necklace)
-    expect(@user.sold_products).to_not include(@scarf)
-    expect(@user.sold_products).to_not include(@hat)
+    expect(@user.potential_sales).to include(necklace_line_item)
+    expect(@user.potential_sales).to_not include(scarf_line_item)
+    expect(@user.potential_sales).to_not include(hat_line_item)
 
-    expect(@seller.sold_products).to_not include(necklace)
-    expect(@seller.sold_products).to include(@scarf)
-    expect(@seller.sold_products).to include(@hat)   
+    expect(@seller.potential_sales).to_not include(necklace)
+    expect(@seller.potential_sales).to include(scarf_line_item)
+    expect(@seller.potential_sales).to include(hat_line_item)   
   end
 
-  it "knows about the products it has purchased" do
-    aarons_store = Store.create(:owner_id => @user.id, :name => "Jewelry Outlet", :description => "We're known for our unique collection of costume jewelry!")
-    necklace = Product.create(:store_id => aarons_store.id, :name => "necklace", :description => "3D printed tetrahedron necklace")
-    patricias_cart = Cart.create(:buyer_id => @seller.id)
-    necklace_line_item = LineItem.create(:cart_id => patricias_cart.id, :product_id => necklace.id)
-
-    cart = Cart.create(:buyer_id => @user.id)
-    scarf_line_item = LineItem.create(:cart_id => cart.id, :product_id => @scarf.id)
-    hat_line_item = LineItem.create(:cart_id => cart.id, :product_id => @hat.id)
-
-    expect(@user.purchased_products).to_not include(necklace)
-    expect(@user.purchased_products).to include(@scarf)
-    expect(@user.purchased_products).to include(@hat)
-
-    expect(@seller.purchased_products).to include(necklace)
-    expect(@seller.purchased_products).to_not include(@scarf)
-    expect(@seller.purchased_products).to_not include(@hat)   
-  end
 end
