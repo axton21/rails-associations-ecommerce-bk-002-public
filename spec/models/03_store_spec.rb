@@ -14,8 +14,8 @@ describe "Store" do
   end
 
   it "has many products in it" do
-    expect(@store.products).to include(@scarf)
-    expect(@store.products).to include(@hat)
+    expect(@store.products_for_sale).to include(@scarf)
+    expect(@store.products_for_sale).to include(@hat)
   end
 
 end
