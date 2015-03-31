@@ -1,1 +1,5 @@
 *.db
+db/schema.rb
+db/ecommerce_test.sqlite
+db/ecommerce_development.sqlite
+Gemfile.lock
