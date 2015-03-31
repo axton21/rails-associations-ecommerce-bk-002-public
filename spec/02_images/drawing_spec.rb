@@ -1,4 +1,4 @@
-describe "saved a drawing to the image folder" do
+describe "saved a drawing to the public/img folder called 'drawing'" do
   it "a file called drawing exists in the public/img folder" do
     possible_extentions = ["png", "jpg", "gif", "jpeg"]
     possible_file_names = possible_extentions.map {|ext| "public/img/drawing.#{ext}"}
