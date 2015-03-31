@@ -2,7 +2,7 @@ describe "LineItem" do
 
   before(:each) do
     @buyer = User.create(:name => "Aaron Bodkin")
-    @cart = Cart.create(:buyer_id => @buyer.id)
+    @cart = Cart.create(:owner_id => @buyer.id)
     @seller = User.create(:name => "Patricia Morris")
     @store = Store.create(:owner_id => @seller.id, :name => "Lovin' Knit", :description => "a locally sourced organic knit shot")
     @scarf = Product.create(:store_id => @store.id, :name => "Scarf", :description => "this deep blue scarf will keep you warm and fashionable", :inventory => 10)

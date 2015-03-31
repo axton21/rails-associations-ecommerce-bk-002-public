@@ -30,8 +30,8 @@ describe "User" do
   end
 
   it "knows about its carts" do
-    first_cart = Cart.create(:buyer_id => @user.id)
-    second_cart = Cart.create(:buyer_id => @user.id)
+    first_cart = Cart.create(:owner_id => @user.id)
+    second_cart = Cart.create(:owner_id => @user.id)
     expect(@user.carts).to include(first_cart)
     expect(@user.carts).to include(second_cart)
   end
@@ -39,10 +39,10 @@ describe "User" do
   it "knows about its potential purchases" do
     aarons_store = Store.create(:owner_id => @user.id, :name => "Jewelry Outlet", :description => "We're known for our unique collection of costume jewelry!")
     necklace = Product.create(:store_id => aarons_store.id, :name => "necklace", :description => "3D printed tetrahedron necklace")
-    patricias_cart = Cart.create(:buyer_id => @seller.id)
+    patricias_cart = Cart.create(:owner_id => @seller.id)
     necklace_line_item = LineItem.create(:cart_id => patricias_cart.id, :product_id => necklace.id)
 
-    cart = Cart.create(:buyer_id => @user.id)
+    cart = Cart.create(:owner_id => @user.id)
     scarf_line_item = LineItem.create(:cart_id => cart.id, :product_id => @scarf.id)
     hat_line_item = LineItem.create(:cart_id => cart.id, :product_id => @hat.id)
 
@@ -58,10 +58,10 @@ describe "User" do
   it "knows about its potential sales" do
     aarons_store = Store.create(:owner_id => @user.id, :name => "Jewelry Outlet", :description => "We're known for our unique collection of costume jewelry!")
     necklace = Product.create(:store_id => aarons_store.id, :name => "necklace", :description => "3D printed tetrahedron necklace")
-    patricias_cart = Cart.create(:buyer_id => @seller.id)
+    patricias_cart = Cart.create(:owner_id => @seller.id)
     necklace_line_item = LineItem.create(:cart_id => patricias_cart.id, :product_id => necklace.id)
 
-    cart = Cart.create(:buyer_id => @user.id)
+    cart = Cart.create(:owner_id => @user.id)
     scarf_line_item = LineItem.create(:cart_id => cart.id, :product_id => @scarf.id)
     hat_line_item = LineItem.create(:cart_id => cart.id, :product_id => @hat.id)
 
