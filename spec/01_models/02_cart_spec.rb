@@ -1,9 +1,9 @@
 describe "Cart" do
 
    before(:each) do
-    @owner = User.create(:name => "Aaron Bodkin")
-    @cart = Cart.create(:owner_id => @owner.id)
-    @jewelry_store = Store.create(:owner_id => @owner.id, :name => "Bedazzled", :description => "antique jewelry collectors")
+    @buyer = User.create(:name => "Aaron Bodkin")
+    @cart = Cart.create(:owner_id => @buyer.id)
+    @jewelry_store = Store.create(:owner_id => @buyer.id, :name => "Bedazzled", :description => "antique jewelry collectors")
     @necklace = Product.create(:store_id => @jewelry_store.id, :name => "necklace", :description => "3D printed tetrahedron necklace")
 
 
@@ -14,8 +14,8 @@ describe "Cart" do
     @hat = Product.create(:store_id => @store.id, :name => "Hat", :description => "make a statement this winter with this grey hat", :inventory => 20)
   end
  
-  it "knows about its owner" do
-    expect(@cart.owner).to eq(@owner)
+  it "knows about its buyer" do
+    expect(@cart.buyer).to eq(@buyer)
   end
 
   it "has many line items in it" do
