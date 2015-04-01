@@ -3,12 +3,12 @@ aaron = User.create(:name => "Aaron Bodkin")
 patricia = User.create(:name => "Patricia Morris")
 
 # carts
-aarons_cart = Cart.create(:owner_id => aaron.id)
-patricias_cart = Cart.create(:owner_id => patricia.id)
+aarons_cart = Cart.create(:buyer_id => aaron.id)
+patricias_cart = Cart.create(:buyer_id => patricia.id)
 
 # stores
-jewelry_store = Store.create(:owner_id => aaron.id, :name => "Bedazzled", :description => "antique jewelry collectors")
-knit_store = Store.create(:owner_id => patricia.id, :name => "Lovin' Knit", :description => "a locally sourced organic knit shot")
+jewelry_store = Store.create(:seller_id => aaron.id, :name => "Bedazzled", :description => "antique jewelry collectors")
+knit_store = Store.create(:seller_id => patricia.id, :name => "Lovin' Knit", :description => "a locally sourced organic knit shot")
 
 # products
 necklace = Product.create(:store_id => jewelry_store.id, :name => "necklace", :description => "3D printed tetrahedron necklace", :price => 23.66)
