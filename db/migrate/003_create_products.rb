@@ -5,6 +5,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text :description
       t.integer :inventory
       t.decimal :price
+      t.integer :store_id
     end
   end
 end
